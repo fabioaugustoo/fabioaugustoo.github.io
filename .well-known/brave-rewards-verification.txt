@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: playlok.github.io
-Token: e6a72e693882c41a15863ec7c1ab52f1d0ac4a4e298d1e311af0ad0fb27a7148
