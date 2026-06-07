@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fabio Augusto – Profissional de TI em transição para Segurança da Informação | GRC | ISO 27001 | LGPD | NIST" />
+  <meta name="author" content="Fabio Augusto Daniel Nicoleti" />
+  <title>Fabio Augusto · Segurança da Informação</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg:        #0a0c10;
+      --bg2:       #0f1218;
+      --bg3:       #141920;
+      --border:    #1e2733;
+      --accent:    #a855f7;
+      --accent2:   #7c3aed;
+      --accent3:   #ff6b35;
+      --text:      #e2e8f0;
+      --muted:     #6b7a8d;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── SCANLINE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(168,85,247,0.015) 2px,
+        rgba(168,85,247,0.015) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 60px;
+      background: rgba(10,12,16,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+    }
+    .nav-logo span { color: var(--muted); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.4rem 1rem;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 2.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.4;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 900px;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--sans);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-name .highlight {
+      color: transparent;
+      -webkit-text-stroke: 1px var(--accent);
+    }
+
+    .hero-role {
+      font-family: var(--mono);
+      font-size: clamp(0.9rem, 2vw, 1.15rem);
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .hero-role .cursor {
+      display: inline-block;
+      width: 2px; height: 1.1em;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-left: 3px;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: #c084fc; transform: translateY(-2px); }
+
+    .btn-ghost {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 3rem; right: 2.5rem;
+      display: flex;
+      gap: 2.5rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 2.5rem;
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .section-line {
+      width: 48px; height: 3px;
+      background: var(--accent);
+      margin-top: 1rem;
+    }
+
+    /* ── SOBRE ── */
+    #sobre { background: var(--bg2); }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .sobre-text p {
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .sobre-text p strong { color: var(--text); }
+
+    .info-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: border-color 0.2s;
+    }
+    .info-card:hover { border-color: var(--accent); }
+
+    .info-icon {
+      width: 40px; height: 40px;
+      background: rgba(168,85,247,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .info-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.2rem;
+    }
+    .info-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ── EXPERIÊNCIA ── */
+    #experiencia { background: var(--bg); }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.45rem;
+      width: 9px; height: 9px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px #a855f7;
+    }
+
+    .timeline-meta {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-org {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .timeline-list li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .timeline-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ── HABILIDADES ── */
+    #habilidades { background: var(--bg2); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.25s;
+    }
+
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .skill-card:hover::before { transform: scaleY(1); }
+
+    .skill-card-icon {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .skill-card-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.3rem 0.7rem;
+      background: rgba(168,85,247,0.07);
+      border: 1px solid rgba(168,85,247,0.2);
+      color: var(--text);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FERRAMENTAS ── */
+    .tools-section {
+      margin-top: 3rem;
+    }
+
+    .tools-title {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .tool-pill {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .tool-pill:hover { border-color: var(--accent2); color: var(--accent2); }
+
+    /* ── FORMAÇÃO ── */
+    #formacao { background: var(--bg); }
+
+    .edu-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+
+    .edu-card:hover { border-color: var(--accent); }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-top: 0.2rem;
+    }
+
+    .edu-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-inst {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── CERTIFICADOS ── */
+    #certificados { background: var(--bg2); }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .cert-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .cert-item:hover {
+      border-color: var(--accent);
+      background: rgba(168,85,247,0.04);
+    }
+
+    .cert-item i {
+      color: var(--accent);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .cert-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .cert-org {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    /* ── CONTATO ── */
+    #contato { background: var(--bg); }
+
+    .contato-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contato-text h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contato-text p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-link i { font-size: 1rem; color: var(--accent); width: 20px; }
+
+    /* ── TERMINAL CARD ── */
+    .terminal-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      background: #1a1f2a;
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .terminal-dot.red   { background: #ff5f57; }
+    .terminal-dot.yellow { background: #ffbd2e; }
+    .terminal-dot.green { background: #28c840; }
+
+    .terminal-title-bar {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-left: 0.5rem;
+    }
+
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 2;
+    }
+
+    .t-prompt { color: var(--accent); }
+    .t-cmd { color: var(--text); }
+    .t-comment { color: var(--muted); }
+    .t-string { color: #f9b44e; }
+    .t-value { color: #7ec8e3; }
+    .t-blank { display: block; height: 0.75rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links, .nav-cta { display: none; }
+      section { padding: 4rem 1.25rem; }
+      #home { padding: 80px 1.25rem 10rem; }
+      .sobre-grid, .contato-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { position: static; margin-top: 3rem; }
+    }
+
+    /* ── SCROLL FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo"><span>//</span> fabioaugustoo</div>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#habilidades">Skills</a></li>
+      <li><a href="#formacao">Formação</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="https://linkedin.com/in/fabioaugusto1" target="_blank" class="nav-cta">LinkedIn ↗</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag">Segurança da Informação · GRC · Jacarezinho, PR</div>
+
+      <h1 class="hero-name">
+        Fabio<br>
+        <span class="highlight">Augusto</span>
+      </h1>
+
+      <p class="hero-role">
+        <span id="typed-text">Analista de Segurança da Informação</span><span class="cursor"></span>
+      </p>
+
+      <p class="hero-desc">
+        Profissional de TI em transição para Segurança da Informação, com experiência em suporte técnico N2,
+        redes e infraestrutura ISP. Foco em <strong>GRC</strong>, análise de riscos, <strong>LGPD</strong>,
+        <strong>ISO 27001</strong> e <strong>NIST</strong>.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://linkedin.com/in/fabioaugusto1" target="_blank" class="btn-primary">Ver LinkedIn</a>
+        <a href="https://github.com/fabioaugustoo" target="_blank" class="btn-ghost">GitHub ↗</a>
+        <a href="#contato" class="btn-ghost">Contato</a>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">4+</span>
+        <span class="stat-label">Anos de<br>experiência</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">N2</span>
+        <span class="stat-label">Nível de<br>suporte</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">ISP</span>
+        <span class="stat-label">Background<br>técnico</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="section-header fade-in">
+      <div class="section-tag">// 01 — whoami</div>
+      <h2 class="section-title">Sobre Mim</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="sobre-grid">
+      <div class="sobre-text fade-in">
+        <p>
+          Sou <strong>Fabio Augusto Daniel Nicoleti</strong>, profissional de TI com base sólida em
+          suporte técnico, redes e infraestrutura de provedores de internet.
+        </p>
+        <p>
+          Graduado em <strong>Tecnologia em Jogos Digitais</strong> pela FATEC Ourinhos, estou
+          ativamente em transição para a área de <strong>Segurança da Informação</strong>, com ênfase
+          em <strong>GRC (Governança, Risco e Compliance)</strong>, proteção de dados e boas práticas
+          de segurança corporativa.
+        </p>
+        <p>
+          Perfil analítico, orientado à resolução de problemas e à continuidade dos serviços.
+          Familiaridade com ferramentas de análise de segurança como Nmap, Wireshark, Metasploit,
+          Burp Suite e Hydra.
+        </p>
+        <p>
+          Entusiasta de Linux e da cultura open source, com planos de migração para Linux como
+          sistema operacional principal.
+        </p>
+      </div>
+
+      <div class="fade-in">
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div class="info-label">Localização</div>
+            <div class="info-value">Jacarezinho, PR — Brasil</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="info-label">E-mail</div>
+            <div class="info-value">fabio.augustodn@gmail.com</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fab fa-linkedin"></i></div>
+          <div>
+            <div class="info-label">LinkedIn</div>
+            <div class="info-value">linkedin.com/in/fabioaugusto1</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon"><i class="fab fa-github"></i></div>
+          <div>
+            <div class="info-label">GitHub</div>
+            <div class="info-value">github.com/fabioaugustoo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIÊNCIA -->
+  <section id="experiencia">
+    <div class="section-header fade-in">
+      <div class="section-tag">// 02 — experience.log</div>
+      <h2 class="section-title">Experiência Profissional</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-meta">Ago. 2024 — Dez. 2024</div>
+        <div class="timeline-title">Técnico Administrativo I (Temporário)</div>
+        <div class="timeline-org">Secretaria de Agricultura e Abastecimento do Paraná · Jacarezinho, PR</div>
+        <ul class="timeline-list">
+          <li>Gestão e organização de planilhas e bases de dados administrativas</li>
+          <li>Envio, recebimento e controle de documentos via sistema e-Protocolo PR</li>
+          <li>Suporte técnico interno envolvendo hardware, impressoras e sistemas corporativos</li>
+          <li>Apoio a usuários no uso de sistemas informatizados e resolução de problemas técnicos</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-meta">Jul. 2021 — Ago. 2023</div>
+        <div class="timeline-title">Técnico de Suporte N2 / Infraestrutura de Redes</div>
+        <div class="timeline-org">Nicknetwork — Provedor de Internet Fibra Óptica (ISP) · Jacarezinho, PR</div>
+        <ul class="timeline-list">
+          <li>Suporte técnico nível 2 em ambiente ISP — incidentes de conectividade e infraestrutura de rede</li>
+          <li>Configuração e suporte a redes LAN/WAN, roteadores, modems e dispositivos de acesso</li>
+          <li>Monitoramento de clientes, pontos de acesso e disponibilidade de serviços</li>
+          <li>Análise de falhas e execução de verificações preventivas remotas e em campo</li>
+          <li>Atuação em ambiente de monitoramento (NOC), auxiliando na continuidade dos serviços</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-meta">Mar. 2019 — Mar. 2021</div>
+        <div class="timeline-title">Estagiário de TI</div>
+        <div class="timeline-org">Universidade Estadual do Norte do Paraná — UENP (Secretaria CCS) · Jacarezinho, PR</div>
+        <ul class="timeline-list">
+          <li>Manutenção corretiva e preventiva de equipamentos de informática</li>
+          <li>Suporte técnico a usuários e orientação no uso de sistemas informatizados</li>
+          <li>Apoio no controle e organização de documentos digitais e físicos (e-Protocolo PR)</li>
+          <li>Auxílio em rotinas administrativas com foco em organização de informações</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section id="habilidades">
+    <div class="section-header fade-in">
+      <div class="section-tag">// 03 — skills.json</div>
+      <h2 class="section-title">Habilidades Técnicas</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="skill-card-title">Segurança da Informação</div>
+        <div class="skill-tags">
+          <span class="tag">GRC</span>
+          <span class="tag">LGPD</span>
+          <span class="tag">ISO 27001</span>
+          <span class="tag">NIST</span>
+          <span class="tag">Gestão de Riscos</span>
+          <span class="tag">Controle de Acesso</span>
+          <span class="tag">Proteção de Dados</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="skill-card-title">Redes e Infraestrutura</div>
+        <div class="skill-tags">
+          <span class="tag">TCP/IP</span>
+          <span class="tag">LAN/WAN</span>
+          <span class="tag">Roteadores</span>
+          <span class="tag">Modems</span>
+          <span class="tag">Fibra Óptica</span>
+          <span class="tag">Wi-Fi</span>
+          <span class="tag">NOC</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-terminal"></i></div>
+        <div class="skill-card-title">Ferramentas de Segurança</div>
+        <div class="skill-tags">
+          <span class="tag">Nmap</span>
+          <span class="tag">Wireshark</span>
+          <span class="tag">Metasploit</span>
+          <span class="tag">Burp Suite</span>
+          <span class="tag">Hydra</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="skill-card-title">Sistemas e Suporte</div>
+        <div class="skill-tags">
+          <span class="tag">Windows</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Help Desk</span>
+          <span class="tag">Suporte N1/N2</span>
+          <span class="tag">Diagnóstico</span>
+          <span class="tag">Manutenção Preventiva</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-code"></i></div>
+        <div class="skill-card-title">Programação</div>
+        <div class="skill-tags">
+          <span class="tag">Python (base)</span>
+          <span class="tag">PHP (básico)</span>
+          <span class="tag">Lógica de Programação</span>
+          <span class="tag">Banco de Dados</span>
+          <span class="tag">GitHub</span>
+        </div>
+      </div>
+
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon"><i class="fas fa-tools"></i></div>
+        <div class="skill-card-title">Ferramentas e Sistemas</div>
+        <div class="skill-tags">
+          <span class="tag">GitHub</span>
+          <span class="tag">Sistemas de Chamados</span>
+          <span class="tag">Excel / Office</span>
+          <span class="tag">e-Protocolo PR</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tools-section fade-in">
+      <div class="tools-title">// Ferramentas de segurança utilizadas</div>
+      <div class="tools-row">
+        <span class="tool-pill">Nmap</span>
+        <span class="tool-pill">Wireshark</span>
+        <span class="tool-pill">Metasploit</span>
+        <span class="tool-pill">Burp Suite</span>
+        <span class="tool-pill">Hydra</span>
+        <span class="tool-pill">WinMTR</span>
+        <span class="tool-pill">Kali Linux</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAÇÃO -->
+  <section id="formacao">
+    <div class="section-header fade-in">
+      <div class="section-tag">// 04 — education.db</div>
+      <h2 class="section-title">Formação Acadêmica</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="fade-in">
+      <div class="edu-card">
+        <div class="edu-year">2018 — 2021</div>
+        <div>
+          <div class="edu-title">Tecnologia em Jogos Digitais</div>
+          <div class="edu-inst">Faculdade de Tecnologia de Ourinhos — FATEC Ourinhos, PR</div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div class="edu-year">2020</div>
+        <div>
+          <div class="edu-title">Lógica de Programação e Algoritmo — 40h</div>
+          <div class="edu-inst">Curso em Vídeo (Gustavo Guanabara)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICADOS -->
+  <section id="certificados">
+    <div class="section-header fade-in">
+      <div class="section-tag">// 05 — certificates.list</div>
+      <h2 class="section-title">Certificados</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="cert-grid">
+      <a href="certificados/jogos-digitais-conclusao-de-curso.pdf" target="_blank" class="cert-item fade-in">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <div class="cert-name">Tecnologia em Jogos Digitais</div>
+          <div class="cert-org">FATEC Ourinhos · Graduação</div>
+        </div>
+      </a>
+      <a href="certificados/algoritmo-curso-em-video.pdf" target="_blank" class="cert-item fade-in">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <div class="cert-name">Lógica de Programação e Algoritmo</div>
+          <div class="cert-org">Curso em Vídeo · 40h</div>
+        </div>
+      </a>
+      <a href="certificados/hardware-curso-em-video.pdf" target="_blank" class="cert-item fade-in">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <div class="cert-name">Hardware</div>
+          <div class="cert-org">Curso em Vídeo · 20h</div>
+        </div>
+      </a>
+      <a href="certificados/designer-e-web-designer.pdf" target="_blank" class="cert-item fade-in">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <div class="cert-name">Designer e Web Designer</div>
+          <div class="cert-org">Onbyte · 288h</div>
+        </div>
+      </a>
+      <a href="certificados/cbie-2019.pdf" target="_blank" class="cert-item fade-in">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <div class="cert-name">XXV WIE — CBIE 2019</div>
+          <div class="cert-org">Workshop de Informática nas Escolas</div>
+        </div>
+      </a>
+      <a href="certificados/o-estado-e-o-estagio.pdf" target="_blank" class="cert-item fade-in">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <div class="cert-name">O Estado e o Estágio — 24h</div>
+          <div class="cert-org">Escola de Gestão do Paraná</div>
+        </div>
+      </a>
+      <a href="certificados/XIV-semana-de-tecnologia-fatec.pdf" target="_blank" class="cert-item fade-in">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <div class="cert-name">XIV Semana de Tecnologia</div>
+          <div class="cert-org">FATEC Ourinhos</div>
+        </div>
+      </a>
+      <a href="certificados/XI-gamefest-fatec.pdf" target="_blank" class="cert-item fade-in">
+        <i class="fas fa-certificate"></i>
+        <div>
+          <div class="cert-name">XI GameFest</div>
+          <div class="cert-org">FATEC Ourinhos</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="section-header fade-in">
+      <div class="section-tag">// 06 — contact.sh</div>
+      <h2 class="section-title">Contato</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="contato-wrapper">
+      <div class="contato-text fade-in">
+        <h3>Vamos conversar?</h3>
+        <p>
+          Estou em busca de oportunidades na área de Segurança da Informação, com foco em
+          GRC, análise de riscos e conformidade. Aberto a propostas e conexões profissionais.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:fabio.augustodn@gmail.com" class="contact-link">
+            <i class="fas fa-envelope"></i>
+            fabio.augustodn@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/fabioaugusto1" target="_blank" class="contact-link">
+            <i class="fab fa-linkedin"></i>
+            linkedin.com/in/fabioaugusto1
+          </a>
+          <a href="https://github.com/fabioaugustoo" target="_blank" class="contact-link">
+            <i class="fab fa-github"></i>
+            github.com/fabioaugustoo
+          </a>
+        </div>
+      </div>
+
+      <div class="terminal-card fade-in">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title-bar">fabio@sec:~$</span>
+        </div>
+        <div class="terminal-body">
+          <span class="t-prompt">$ </span><span class="t-cmd">cat profile.json</span><br>
+          <span class="t-blank"></span>
+          <span class="t-comment">{</span><br>
+          &nbsp;&nbsp;<span class="t-string">"nome"</span>: <span class="t-value">"Fabio Augusto D. Nicoleti"</span>,<br>
+          &nbsp;&nbsp;<span class="t-string">"foco"</span>: <span class="t-value">"Segurança da Informação"</span>,<br>
+          &nbsp;&nbsp;<span class="t-string">"especialidade"</span>: <span class="t-value">"GRC / Redes / ISP"</span>,<br>
+          &nbsp;&nbsp;<span class="t-string">"frameworks"</span>: [<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span class="t-value">"LGPD"</span>, <span class="t-value">"ISO 27001"</span>, <span class="t-value">"NIST"</span><br>
+          &nbsp;&nbsp;],<br>
+          &nbsp;&nbsp;<span class="t-string">"disponivel"</span>: <span class="t-value">true</span><br>
+          <span class="t-comment">}</span><br>
+          <span class="t-blank"></span>
+          <span class="t-prompt">$ </span><span class="t-cmd">status --open-to-work</span><br>
+          <span style="color:#28c840;">✔ Disponível para novas oportunidades</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Fabio Augusto Daniel Nicoleti · <a href="https://github.com/fabioaugustoo">fabioaugustoo</a></p>
+    <p>Jacarezinho, PR — Brasil · <a href="mailto:fabio.augustodn@gmail.com">fabio.augustodn@gmail.com</a></p>
+  </footer>
+
+  <script>
+    // Typed text effect
+    const phrases = [
+      'Analista de Segurança da Informação',
+      'GRC & Compliance Specialist',
+      'Infraestrutura & Redes · N2',
+      'ISO 27001 | LGPD | NIST',
+    ];
+    let pi = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typed-text');
+
+    function type() {
+      const phrase = phrases[pi];
+      if (!deleting) {
+        el.textContent = phrase.slice(0, ++ci);
+        if (ci === phrase.length) { deleting = true; setTimeout(type, 2200); return; }
+      } else {
+        el.textContent = phrase.slice(0, --ci);
+        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+      }
+      setTimeout(type, deleting ? 45 : 75);
+    }
+    type();
+
+    // Intersection Observer for fade-in
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
